@@ -1,0 +1,19 @@
+# for have colors
+autoload -U colors
+colors
+
+# define your colors here (i hate white background)
+date_color="black"
+user_color="cyan"
+host_color="yellow"
+path_color="green"
+prompt_color="cyan"
+
+command_time="%{$fg_bold[$date_color]%}%*"
+last_status="%(?,%{$fg_bold[green]%}^_^,%{$fg_bold[red]%}0_o %{$reset_color%}[%?])"
+host="%{$fg_bold[$user_color]%}%n%{$reset_color%}@%{$fg[$host_color]%}%m"
+cpath="%B%{$fg[$path_color]%}%/%b"
+prompt="%{$fg_bold[$prompt_color]%}>"
+end="%{$reset_color%}"
+
+PS1="$command_time $last_status $host $cpath $prompt $end"

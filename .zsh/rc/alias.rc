@@ -1,0 +1,42 @@
+alias ll="ls -lah"
+alias rm="rm -i"
+alias cp="cp -i"
+alias ls="ls --color=auto"
+alias l="ls -ail"
+alias cl="clear"
+
+alias large_files="find ./ -type f -size +10M -exec ls -lha {} \;"
+alias large_dirs="du --max-depth=1 ./ | sort -n -r"
+alias huge_files="find ./ -type f -size +500M -exec ls -lha {} \;"
+alias clear_revdep_rebuild="rm /var/cache/revdep-rebuild/*.rr"
+
+alias cvs="cvs -z3"
+alias irc="~/scripts/irc.sh"
+alias cjb="ssh snaitov@shell.cjb.net -p 443"
+alias tunnel="ssh -D 8080 snaitov@tunnel.shellmix.com"
+alias reboot="shutdown -r now"
+
+# do a du -hs on each dir on current path
+alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
+
+#alias tcpd8080=”sudo tcpdump -s 0 -A -i lo0 ‘tcp port 8080 and (((ip[2:2] – ((ip[0]&0xf)2)) != 0)’”
+
+if [ -x /usr/libexec/mc/mc-wrapper.sh ]
+then
+    alias mc='. /usr/libexec/mc/mc-wrapper.sh'
+fi
+
+rebuild_deps() { x=($(equery -q d "$@")); emerge -1av "${x[@]/#/=}"; }
+rebuild_wild() { x=($(qlist -IC "$@")); emerge -1av "${x[@]/#/=}"; }
+
+##############
+# TV ALIASES #
+##############
+
+# NOTICIAS
+alias tv_sic_noticias="rtmpdump -V -r 'rtmpt://pop.xuuby.com:80/edge/sicnoticias' -a edge -f 'WIN 11,4,31,110' -p 'http://www.xuuby.com/show.php?chname=sicnoticias&width=650&height=500&a=1' -s 'http://www.xuuby.com/player/playermax4.swf' -t 'rtmpt://pop.xuuby.com:80/edge' -y sicnoticias | vlc -"
+alias tv_tvi24="rtmpdump -r 'rtmp://31.204.154.55/live/televisatvi24' -a live -f 'WIN 11,3,300,262' -p 'http://www.fcast.tv/embed.php?live=televisatvi24&vw=550&vh=410' -s 'http://82.192.95.130/player/player-licensed.swf' -t 'rtmp://31.204.154.55/live' -y televisatvi24 | optirun vlc -"
+
+# FILMES
+alias tv_hollywood="rtmpdump -r 'rtmpt://jazz.xuuby.com:80/origin/hollywood' -a origin -f 'WIN 11,3,300,262' -p 'http://www.xuuby.com/show.php?chname=hollywood&width=650&height=500&a=1' -s 'http://www.xuuby.com/player/playermax4.swf' -t 'rtmpt://jazz.xuuby.com:80/origin' -y hollywood | vlc -"
+
